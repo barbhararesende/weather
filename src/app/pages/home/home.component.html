@@ -1,0 +1,50 @@
+<div class="body">
+    <div class="container">
+        <div class="current_weather">
+            <div class="title">
+                <h3>{{tempo.current_weather.temperature | number: '1.0-0'}}º</h3>
+                <h5>{{tempo.timezone}}</h5>
+            </div>
+            <div class="sun">
+                <div class="item">
+                    <img src="../../../assets/img/sunrise.svg" alt="">
+                    <p>6:00</p>
+                </div>
+                <div class="item">
+                    <img src="../../../assets/img/sunset.svg" alt="">
+                    <p>18:24</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hour-all">
+            <div class="hour-header">
+                Privisão Horária
+            </div>
+            <ul class="hour">
+                <li *ngFor="let item of tempo.hourly.time.slice(0, 24), let i = index ">
+                    <p>{{item | date: 'HH'}}</p>
+                    <img src='../../../assets/img/weather/{{tempo.hourly.weathercode[i]}}.png' alt="">
+                    <p>{{tempo.hourly.temperature_2m[i] | number: '1.0-0' }}º</p>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="week">
+            <li *ngFor="let item of tempo.daily.time, let i = index ">
+                <div class="img-date">
+                    <img src='../../../assets/img/weather/{{tempo.daily.weathercode[i]}}.png' alt="">
+                    <div class="date">
+                        <h6>{{item | date: 'EEEE'}}</h6>
+                        <p>{{item | date: 'MMM d'}}</p> 
+                    </div>
+                </div>
+                <div class="temp">
+                    <h4 class="min">{{tempo.daily.temperature_2m_min[i] | number: '1.0-0'}}<span>º</span></h4>
+                    <h4 class="max">{{tempo.daily.temperature_2m_max[i] | number: '1.0-0'}}<span>º</span></h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
